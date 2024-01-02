@@ -4,19 +4,24 @@
 
 #ifndef SEMESTRALNA_PRACA_POS_GAMEOFLIFE_H
 #define SEMESTRALNA_PRACA_POS_GAMEOFLIFE_H
+#include <iostream>
+#include <vector>
 
 
 class GameOfLife {
 
 private:
     int rozsah;
-
+    int pocetPrvkovNaGenerovanie;
 public:
-    GameOfLife(int paRozsah) :
-    rozsah(paRozsah) {};
+    explicit GameOfLife(int paRozsah) :
+    rozsah(paRozsah), pocetPrvkovNaGenerovanie(0), matrix(paRozsah + 1, std::vector<bool>(paRozsah +1, false)){};
     void printGame();
-    int countNeighbours();
+    int countNeighbours(int x, int y);
     void update();
+    void vygenerujNahodnePrvky();
+    std::vector<std::vector<bool>> matrix;
+
 };
 
 
