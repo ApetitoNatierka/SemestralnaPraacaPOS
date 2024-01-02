@@ -1,0 +1,3 @@
+/tmp/tmp.Vc16LOr5vV/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/tmp/tmp.Vc16LOr5vV/cmake-build-debug/CMakeFiles/edit_cache.dir
+/tmp/tmp.Vc16LOr5vV/cmake-build-debug/CMakeFiles/semestralna_praca_pos.dir
