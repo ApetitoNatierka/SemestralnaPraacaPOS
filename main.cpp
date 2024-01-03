@@ -13,8 +13,8 @@ int main() {
     LatestIteration load;
     load.sortNewestSave();
     std::cout<<"Chces nacitat hru(1) alebo vytvorit novu(2)?"<<std::endl;
-    std::cin>> zaciatok;
     int zaciatok;
+    std::cin>> zaciatok;
     bool opakovanie1 = true;
     while(opakovanie1) {
         switch (zaciatok) {
@@ -22,7 +22,7 @@ int main() {
                     game.loadState(load.getMaxFile());
                     opakovanie1 = false;
                     break;
-            case 2: std::cout<< "Napis rozsah hracej plochy: "<< std::endl;
+            case 2 : std::cout<< "Napis rozsah hracej plochy: "<< std::endl;
                     int rozsahHry;
                     std::cin >> rozsahHry;
                     GameOfLife game(rozsahHry);

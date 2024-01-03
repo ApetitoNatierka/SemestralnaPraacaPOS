@@ -65,6 +65,14 @@ build CMakeFiles/semestralna_praca_pos.dir/GameOfLife.cpp.obj: CXX_COMPILER__sem
   TARGET_COMPILE_PDB = CMakeFiles\semestralna_praca_pos.dir\
   TARGET_PDB = semestralna_praca_pos.pdb
 
+build CMakeFiles/semestralna_praca_pos.dir/LatestIteration.cpp.obj: CXX_COMPILER__semestralna_praca_pos_unscanned_Debug C$:/Users/lordc/CLionProjects/SemestralnaPraacaPOS/LatestIteration.cpp || cmake_object_order_depends_target_semestralna_praca_pos
+  DEP_FILE = CMakeFiles\semestralna_praca_pos.dir\LatestIteration.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\semestralna_praca_pos.dir
+  OBJECT_FILE_DIR = CMakeFiles\semestralna_praca_pos.dir
+  TARGET_COMPILE_PDB = CMakeFiles\semestralna_praca_pos.dir\
+  TARGET_PDB = semestralna_praca_pos.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target semestralna_praca_pos
@@ -73,7 +81,7 @@ build CMakeFiles/semestralna_praca_pos.dir/GameOfLife.cpp.obj: CXX_COMPILER__sem
 #############################################
 # Link the executable semestralna_praca_pos.exe
 
-build semestralna_praca_pos.exe: CXX_EXECUTABLE_LINKER__semestralna_praca_pos_Debug CMakeFiles/semestralna_praca_pos.dir/main.cpp.obj CMakeFiles/semestralna_praca_pos.dir/GameOfLife.cpp.obj
+build semestralna_praca_pos.exe: CXX_EXECUTABLE_LINKER__semestralna_praca_pos_Debug CMakeFiles/semestralna_praca_pos.dir/main.cpp.obj CMakeFiles/semestralna_praca_pos.dir/GameOfLife.cpp.obj CMakeFiles/semestralna_praca_pos.dir/LatestIteration.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\semestralna_praca_pos.dir
