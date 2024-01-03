@@ -8,6 +8,11 @@ int main() {
     game.matrix.at(1).at(1) = true;
     game.matrix.at(1).at(2) = true;
     game.matrix.at(1).at(3) = true;
+    //game.matrix.at(1).at(0) = true;
+    //game.matrix.at(2).at(1) = true;
+    //game.matrix.at(2).at(2) = true;
+    //game.matrix.at(1).at(2) = true;
+    //game.matrix.at(0).at(2) = true;
 
     game.printGame();
 
