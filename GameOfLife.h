@@ -15,7 +15,7 @@ private:
     int pocetPrvkovNaGenerovanie;
 public:
     explicit GameOfLife(int paRozsah) :
-    rozsah(paRozsah), pocetPrvkovNaGenerovanie(0), matrix(paRozsah + 1, std::vector<bool>(paRozsah +1, false)){};
+    rozsah(paRozsah), pocetPrvkovNaGenerovanie(10), matrix(paRozsah + 1, std::vector<bool>(paRozsah +1, false)){};
     void printGame();
     int countNeighbours(int x, int y);
     void update();

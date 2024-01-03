@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/tmp/tmp.Vc16LOr5vV/GameOfLife.cpp
+GameOfLife.h
+/tmp/tmp.Vc16LOr5vV/GameOfLife.h
+iostream
+-
+thread
+-
+mutex
+-
+condition_variable
+-
+
+/tmp/tmp.Vc16LOr5vV/GameOfLife.h
+iostream
+-
+vector
+-
+

@@ -28,8 +28,7 @@ int GameOfLife::countNeighbours(int x, int y) {
     for (int i = -1; i <= 1; ++i) {
         for (int j = -1; j <= 1; ++j) {
             if (i == 0 && j == 0) continue;
-            //int noveX = ((x+1)+i+this->rozsah) % this->rozsah;
-            //int noveY = ((y+1)+j+this->rozsah) % this->rozsah;
+
             int noveX = x+i;
             int noveY = y+j;
 
@@ -38,7 +37,6 @@ int GameOfLife::countNeighbours(int x, int y) {
                     ++count;
                 }
             }
-            
         }
     }
     return count;
