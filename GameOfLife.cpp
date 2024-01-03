@@ -56,17 +56,18 @@ void GameOfLife::update() {
      for (int i = 0; i < this->rozsah; ++i) {
          for (int j = 0; j < this->rozsah; ++j) {
              int susedia = countNeighbours(i, j);
-             if (matrix.at(i).at(j) == true) {
+
+             if (matrix.at(i).at(j)) {
                  if (susedia < 2) {
                      matrix.at(i).at(j) = false;
-                 } else if (susedia == 2 && susedia == 3) {
+                 } else if (susedia == 2 || susedia == 3) {
                      matrix.at(i).at(j) = true;
-                 } else if (susedia < 3) {
+                 } else if (susedia > 3) {
                      matrix.at(i).at(j) = false;
                  }
-             } else if (matrix.at(i).at(j) == false) {
+             } else {
                  if (susedia == 3) {
-                     matrix.at(i).at(j) == true;
+                     matrix.at(i).at(j) = true;
                  }
 
              }
