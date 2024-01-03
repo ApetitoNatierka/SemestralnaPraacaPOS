@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(semestralna_praca_pos main.cpp
         GameOfLife.cpp
-        GameOfLife.h)
+        GameOfLife.h
+        LatestIteration.cpp
+        LatestIteration.h)
