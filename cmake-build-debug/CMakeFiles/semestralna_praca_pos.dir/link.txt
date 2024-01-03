@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/semestralna_praca_pos.dir/main.cpp.o -o semestralna_praca_pos 

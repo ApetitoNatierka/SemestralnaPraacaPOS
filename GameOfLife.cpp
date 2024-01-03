@@ -12,9 +12,9 @@ void GameOfLife::printGame() {
     for (int i = 0; i <= this->rozsah; ++i) {
         for (int j = 0; j <= this->rozsah; ++j) {
             if (matrix.at(i).at(j)) {
-                std::cout << "0";
+                std::cout << " 0 ";
             } else {
-                std::cout << ".";
+                std::cout << " . ";
             }
         }
         std::cout << "\n";
@@ -27,7 +27,7 @@ int GameOfLife::countNeighbours(int x, int y) {
     int count = 0;
     for (int i = -1; i <= 1; ++i) {
         for (int j = -1; j <= 1; ++j) {
-
+            if (i == 0 && j == 0) continue;
             //int noveX = ((x+1)+i+this->rozsah) % this->rozsah;
             //int noveY = ((y+1)+j+this->rozsah) % this->rozsah;
             int noveX = x+i;
@@ -53,25 +53,27 @@ int GameOfLife::countNeighbours(int x, int y) {
 }
 
 void GameOfLife::update() {
+    std::vector<std::vector<bool>> docasnyMatrix(rozsah + 1, std::vector<bool>(rozsah +1, false));
      for (int i = 0; i < this->rozsah; ++i) {
          for (int j = 0; j < this->rozsah; ++j) {
              int susedia = countNeighbours(i, j);
 
              if (matrix.at(i).at(j)) {
                  if (susedia < 2) {
-                     matrix.at(i).at(j) = false;
+                     docasnyMatrix.at(i).at(j) = false;
                  } else if (susedia == 2 || susedia == 3) {
-                     matrix.at(i).at(j) = true;
+                     docasnyMatrix.at(i).at(j) = true;
                  } else if (susedia > 3) {
-                     matrix.at(i).at(j) = false;
+                     docasnyMatrix.at(i).at(j) = false;
                  }
              } else {
                  if (susedia == 3) {
-                     matrix.at(i).at(j) = true;
+                     docasnyMatrix.at(i).at(j) = true;
                  }
 
              }
          }
      }
+     matrix = docasnyMatrix;
  };
 
