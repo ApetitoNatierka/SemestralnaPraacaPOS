@@ -7,6 +7,27 @@
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include <fstream>
+
+
+void GameOfLife::saveState(const std::string& filename) {
+    std::ofstream file(filename);
+    for (const auto& row : matrix) {
+        for (bool cell : row) {
+            file << cell << ' ';
+        }
+        file << '\n';
+    }
+}
+
+void GameOfLife::loadState(const std::string& filename) {
+    std::ifstream file(filename);
+    for (auto& row : matrix) {
+        for (bool cell : row) {
+            file >> cell;
+        }
+    }
+}
 
 void GameOfLife::printGame() {
     for (int i = 0; i <= this->rozsah; ++i) {

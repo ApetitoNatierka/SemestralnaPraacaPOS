@@ -24,6 +24,9 @@ public:
     void vygenerujNahodnePrvky();
     std::vector<std::vector<bool>> matrix;
 
+    void saveState(const std::string &filename);
+
+    void loadState(const std::string &filename);
 };
 
 
