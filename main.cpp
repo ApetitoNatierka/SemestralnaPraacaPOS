@@ -15,7 +15,7 @@ int main() {
     std::cout << "Vyber ci chces vygenerovat nahodne prvky(1) alebo si zvolit vlastne(2): "<< std::endl;
     std::cin >> choice;
     bool opakovanie = true;
-    while(opakovanie == true) {
+    while(opakovanie) {
         switch (choice) {
             case 1: std::cout << "Kolko prvkov chces vygenerovat?"<< std::endl;
                 int pocetPrvkov;
