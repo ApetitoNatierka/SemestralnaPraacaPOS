@@ -8,7 +8,7 @@
 
 int main() {
     GameOfLife game(10);
-    game.setPocetPrvkov(50);
+    game.setPocetPrvkov(45);
     game.vygenerujNahodnePrvky();
     //game.matrix.at(1).at(0) = true;
     //game.matrix.at(2).at(1) = true;
