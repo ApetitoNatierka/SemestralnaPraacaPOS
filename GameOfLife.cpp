@@ -19,6 +19,7 @@ void GameOfLife::printGame() {
         }
         std::cout << "\n";
     }
+    std::cout << "----------------------------------" << std::endl;
 }
 
 
@@ -41,30 +42,37 @@ int GameOfLife::countNeighbours(int x, int y) {
         }
     }
     return count;
-};
+}
 
-
-void GameOfLife::update(){
-    for (int i = 0; i < this->rozsah; ++i) {
-        for (int j = 0; j < this->rozsah; ++j) {
-            int susedia = countNeighbours(i,j);
-            if(matrix.at(i).at(j) = true) {
-                if(susedia < 2) {
-                    matrix.at(i).at(j) = false;
-                } else if(susedia == 2 && == 3) {
-                    matrix.at(i).at(j) = true;
-                } else if(susedia < 3) {
-                    matrix.at(i).at(j) = false;
-                }
-            } else if(matrix.at(i).at(j) = false) {
-                if(susedia == 3) {
-                    matrix.at(i).at(j) = true;
-            }
-
-        }
+ void GameOfLife::vygenerujNahodnePrvky() {
+    for (int i = 0; i < this->pocetPrvkovNaGenerovanie; ++i) {
+        int randomX = rand() % this->rozsah;
+        int randomY = rand() % this->rozsah;
+        matrix.at(randomX).at(randomY) = true;
     }
-};
+}
 
+void GameOfLife::update() {
+     for (int i = 0; i < this->rozsah; ++i) {
+         for (int j = 0; j < this->rozsah; ++j) {
+             int susedia = countNeighbours(i, j);
+             if (matrix.at(i).at(j) == true) {
+                 if (susedia < 2) {
+                     matrix.at(i).at(j) = false;
+                 } else if (susedia == 2 && susedia == 3) {
+                     matrix.at(i).at(j) = true;
+                 } else if (susedia < 3) {
+                     matrix.at(i).at(j) = false;
+                 }
+             } else if (matrix.at(i).at(j) == false) {
+                 if (susedia == 3) {
+                     matrix.at(i).at(j) == true;
+                 }
+
+             }
+         }
+     }
+ };
 
     void GameOfLife::vygenerujNahodnePrvky() {
         for (int i = 0; i < this->pocetPrvkovNaGenerovanie; ++i) {
