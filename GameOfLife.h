@@ -13,20 +13,21 @@ class GameOfLife {
 private:
     int rozsah;
     int pocetPrvkovNaGenerovanie;
+    std::vector<std::vector<bool>> matrix;
 public:
-    explicit GameOfLife(int paRozsah) :
-    rozsah(0), pocetPrvkovNaGenerovanie(0), matrix(paRozsah + 1, std::vector<bool>(paRozsah +1, false)){};
+    explicit GameOfLife() :
+    rozsah(0), pocetPrvkovNaGenerovanie(0){};
     int getPocetPrvkov() const{return pocetPrvkovNaGenerovanie;};
     void setPocetPrvkov(int pocet) {pocetPrvkovNaGenerovanie = pocet;};
     void printGame();
     int countNeighbours(int x, int y);
     void update();
     void vygenerujNahodnePrvky();
-    std::vector<std::vector<bool>> matrix;
-
+    void createMatrix(int rozsahMatice);
     void saveState(const std::string &filename);
-
     void loadState(const std::string &filename);
+    void setCoordinatesOnMatrix(int x, int y);
+
 };
 
 

@@ -8,6 +8,7 @@
 #include <mutex>
 #include <condition_variable>
 #include <fstream>
+#include <utility>
 
 
 void GameOfLife::saveState(const std::string& filename) {
@@ -94,5 +95,15 @@ void GameOfLife::update() {
          }
      }
      matrix = docasnyMatrix;
- };
+ }
+
+void GameOfLife::createMatrix(int rozsahMatice) {
+    this->rozsah = rozsahMatice;
+    matrix = std::vector<std::vector<bool>>(rozsah + 1, std::vector<bool>(rozsah +1, false));
+}
+
+void GameOfLife::setCoordinatesOnMatrix(int x, int y) {
+    matrix.at(x).at(y) = true;
+
+};
 

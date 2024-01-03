@@ -4,18 +4,20 @@
 
 #ifndef SEMESTRALNA_PRACA_POS_LATESTITERATION_H
 #define SEMESTRALNA_PRACA_POS_LATESTITERATION_H
-
+#include <iostream>
+#include <filesystem>
 
 class LatestIteration {\
 private:
     std::string path;
-    std::maxIteration = 0;
+    int maxIteration = 0;
     std::string maxFile;
 public:
     void sortNewestSave();
-    void setPath();
+    void setPath(std::string cesta);
+    std::string getPath();
     std::string getMaxFile();
-    int spocitajVelkostMatice();
+    static int spocitajVelkostMatice(const std::string& maxFile);
 };
 
 

@@ -10,7 +10,9 @@
 
 
 int main() {
+    GameOfLife game;
     LatestIteration load;
+    load.setPath("C:/saves/");
     load.sortNewestSave();
     std::cout<<"Chces nacitat hru(1) alebo vytvorit novu(2)?"<<std::endl;
     int zaciatok;
@@ -18,14 +20,14 @@ int main() {
     bool opakovanie1 = true;
     while(opakovanie1) {
         switch (zaciatok) {
-            case 1 : GameOfLife game(load.spocitajVelkostMatice());
+            case 1 : game.createMatrix(load.spocitajVelkostMatice(load.getMaxFile()));
                     game.loadState(load.getMaxFile());
                     opakovanie1 = false;
                     break;
             case 2 : std::cout<< "Napis rozsah hracej plochy: "<< std::endl;
                     int rozsahHry;
                     std::cin >> rozsahHry;
-                    GameOfLife game(rozsahHry);
+                    game.createMatrix(rozsahHry);
                     int choice;
                      std::cout << "Vyber ci chces vygenerovat nahodne prvky(1) alebo si zvolit vlastne(2): "<< std::endl;
                     std::cin >> choice;
@@ -36,7 +38,9 @@ int main() {
                             int pocetPrvkov;
                             std::cin >> pocetPrvkov;
                             game.setPocetPrvkov(pocetPrvkov);
+                            game.vygenerujNahodnePrvky();
                             opakovanie2 = false;
+                            opakovanie1 = false;
                             break;
                         case 2: std::cout << "Kolko prvkov chces vygenerovat?" << std::endl;
                             int pocetNaVytvorenie;
@@ -47,8 +51,9 @@ int main() {
                                 std::cin >> x;
                                 int y;
                                 std::cin >> y;
-                                game.matrix.at(x).at(y) = true;
+                                game.setCoordinatesOnMatrix(x,y);
                                 opakovanie2 = false;
+                                opakovanie1 = false;
                             }
                             break;
                         default: std::cout << "Musis stlacit 1 alebo 2" << std::endl;
@@ -56,9 +61,9 @@ int main() {
 
 
                 }
-                    break;
-            default: std::cout << "Musis stlacit 1 alebo 2" << std::endl;
+                break;
         }
+
     }
     game.printGame();
 
@@ -68,7 +73,7 @@ int main() {
         game.update();
         game.printGame();
         ++cisloIteracie;
-        game.saveState(menoSuboru += std::to_string(cisloIteracie));
+        game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 

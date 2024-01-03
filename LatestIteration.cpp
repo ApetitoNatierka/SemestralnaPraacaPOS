@@ -6,6 +6,8 @@
 #include <filesystem>
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <utility>
 
 
 void LatestIteration::sortNewestSave() {
@@ -17,7 +19,7 @@ void LatestIteration::sortNewestSave() {
             int num = std::stoi(filename.substr(prefix.size()));
             if (num > maxIteration) {
                 maxIteration = num;
-                maxFile = entry.path();
+                maxFile = path + entry.path().filename().string();
             }
         }
     }
@@ -27,20 +29,26 @@ std::string LatestIteration::getMaxFile() {
     return maxFile;
 }
 
-int LatestIteration::spocitajVelkostMatice() {
-    std::pair<int, int> readMatrixSize(const std::string& maxFile) {
+int LatestIteration::spocitajVelkostMatice(const std::string& maxFile) {
         std::ifstream file(maxFile);
         if (!file) {
-            std::cerr << "neda sa otvorit subor:" << maxFile << std::endl;
-            return {-1, -1};
+            std::cerr << "Neda sa otvorit subor:" << maxFile << std::endl;
+            return 0;
         }
 
         int rows, cols;
         if (!(file >> rows >> cols)) {
             std::cerr << "Nemozne precitat velkost pola zo suboru: " << maxFile << std::endl;
-            return {-1, -1};
+            return 0;
         }
 
-        return {rows, cols};
+        return rows;
     }
+
+void LatestIteration::setPath(std::string cesta) {
+    path = std::move(cesta);
+}
+
+std::string LatestIteration::getPath() {
+    return path;
 }
