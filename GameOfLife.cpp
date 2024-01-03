@@ -74,10 +74,3 @@ void GameOfLife::update() {
      }
  };
 
-    void GameOfLife::vygenerujNahodnePrvky() {
-        for (int i = 0; i < this->pocetPrvkovNaGenerovanie; ++i) {
-            int randomX = rand() % this->rozsah;
-            int randomY = rand() % this->rozsah;
-            matrix.at(randomX).at(randomY) = true;
-        }
-    }
