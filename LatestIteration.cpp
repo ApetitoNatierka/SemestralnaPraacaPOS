@@ -13,7 +13,7 @@
 void LatestIteration::sortNewestSave() {
     for (const auto & entry : std::filesystem::directory_iterator(path)) {
         std::string filename = entry.path().filename().string();
-        std::string prefix = "iteration";
+        std::string prefix = "iteracia";
 
         if (filename.substr(0, prefix.size()) == prefix) {
             int num = std::stoi(filename.substr(prefix.size()));
