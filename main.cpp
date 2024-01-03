@@ -2,6 +2,9 @@
 #include "GameOfLife.h"
 #include <chrono>
 #include <thread>
+#include <cstdlib>
+
+
 
 int main() {
     GameOfLife game(10);
@@ -21,8 +24,8 @@ int main() {
         game.update();
         game.printGame();
         i++;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        system("cls");
     }
 
     return 0;
