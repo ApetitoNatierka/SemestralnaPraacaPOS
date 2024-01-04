@@ -17,7 +17,7 @@ public:
     void setPath(std::string cesta);
     std::string getPath();
     std::string getMaxFile();
-    static int spocitajVelkostMatice(const std::string& maxFile);
+    int spocitajVelkostMatice(const std::string& filename);
 };
 
 

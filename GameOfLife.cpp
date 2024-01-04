@@ -30,6 +30,7 @@ void GameOfLife::loadState(const std::string& filename) {
     }
 }
 
+
 void GameOfLife::printGame() {
     for (int i = 0; i <= this->rozsah; ++i) {
         for (int j = 0; j <= this->rozsah; ++j) {
@@ -105,5 +106,9 @@ void GameOfLife::createMatrix(int rozsahMatice) {
 void GameOfLife::setCoordinatesOnMatrix(int x, int y) {
     matrix.at(x).at(y) = true;
 
+}
+
+int GameOfLife::getRozsah() {
+    return rozsah;
 };
 

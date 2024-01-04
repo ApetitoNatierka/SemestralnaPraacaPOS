@@ -27,7 +27,7 @@ public:
     void saveState(const std::string &filename);
     void loadState(const std::string &filename);
     void setCoordinatesOnMatrix(int x, int y);
-
+    int getRozsah();
 };
 
 

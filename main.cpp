@@ -21,6 +21,7 @@ int main() {
     while(opakovanie1) {
         switch (zaciatok) {
             case 1 : game.createMatrix(load.spocitajVelkostMatice(load.getMaxFile()));
+                    std::cout << game.getRozsah() << std::endl;
                     game.loadState(load.getMaxFile());
                     opakovanie1 = false;
                     break;

@@ -29,21 +29,22 @@ std::string LatestIteration::getMaxFile() {
     return maxFile;
 }
 
-int LatestIteration::spocitajVelkostMatice(const std::string& maxFile) {
-        std::ifstream file(maxFile);
-        if (!file) {
-            std::cerr << "Neda sa otvorit subor:" << maxFile << std::endl;
-            return 0;
-        }
-
-        int rows, cols;
-        if (!(file >> rows >> cols)) {
-            std::cerr << "Nemozne precitat velkost pola zo suboru: " << maxFile << std::endl;
-            return 0;
-        }
-
-        return rows;
+int LatestIteration::spocitajVelkostMatice(const std::string& filename) {
+    std::ifstream file(filename);
+    if (!file) {
+        std::cerr << "Unable to open file: " << filename << std::endl;
+        return -1;
     }
+
+    int rows = 0;
+    std::string line;
+    while (std::getline(file, line)) {
+        ++rows;
+    }
+
+    return rows - 1;
+
+}
 
 void LatestIteration::setPath(std::string cesta) {
     path = std::move(cesta);
@@ -52,3 +53,5 @@ void LatestIteration::setPath(std::string cesta) {
 std::string LatestIteration::getPath() {
     return path;
 }
+
+
