@@ -11,6 +11,7 @@
 class GameOfLife {
 
 private:
+    buffer * buffer{};
     int rozsah;
     int pocetPrvkovNaGenerovanie;
     std::vector<std::vector<bool>> matrix;

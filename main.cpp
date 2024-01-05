@@ -5,13 +5,27 @@
 #include <thread>
 #include <string>
 #include <Windows.h>
+#include <filesystem>
+#include <mutex>
+#include <condition_variable>
 
 
+
+void konzumujF(GameOfLife& game, const std::string& filename){
+    game.saveState(filename);
+}
+
+void produkujF(GameOfLife& game){
+    game.update();
+}
 
 
 int main() {
+
     GameOfLife game;
     LatestIteration load;
+    std::thread konzumuj(konzumujF, std::ref(game), load.getPath());
+    std::thread produkuj(produkujF, std::ref(game));
     load.setPath("C:/saves/");
     load.sortNewestSave();
     std::cout<<"Chces nacitat hru(1) alebo vytvorit novu(2)?"<<std::endl;
@@ -47,7 +61,7 @@ int main() {
                             int pocetNaVytvorenie;
                             std::cin >> pocetNaVytvorenie;
                             for (int i = 0; i < pocetNaVytvorenie; ++i) {
-                                std::cout << "Napis x a y suradnice vlastneho prvku:?"<< std::endl;
+                                std::cout << "Napis x a y suradnice vlastneho prvku: (Napis x + enter a potom y + enter)?"<< std::endl;
                                 int x;
                                 std::cin >> x;
                                 int y;
@@ -67,7 +81,7 @@ int main() {
 
     }
     int cisloIteracie;
-    if (load.getNajnovsiaIteracia() > 0) {
+    if (!std::filesystem::is_empty(load.getPath()) > 0) {
         cisloIteracie = load.getNajnovsiaIteracia();
     } else cisloIteracie = 0;
     std::string menoSuboru = "iteracia";

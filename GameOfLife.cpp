@@ -4,11 +4,7 @@
 
 #include "GameOfLife.h"
 #include <iostream>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
 #include <fstream>
-#include <utility>
 
 
 void GameOfLife::saveState(const std::string& filename) {
@@ -22,12 +18,6 @@ void GameOfLife::saveState(const std::string& filename) {
 }
 
 void GameOfLife::loadState(const std::string& filename) {
-   /* std::ifstream file(filename);
-    for (auto& row : matrix) {
-        for (bool& cell : row) {
-            file >> cell;
-        }
-    }*/
     std::ifstream file(filename);
     for (int i = 0; i < rozsah; ++i) {
         for (int j = 0; j < rozsah; ++j) {

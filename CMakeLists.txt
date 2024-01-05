@@ -7,4 +7,6 @@ add_executable(semestralna_praca_pos main.cpp
         GameOfLife.cpp
         GameOfLife.h
         LatestIteration.cpp
-        LatestIteration.h)
+        LatestIteration.h
+        buffer.cpp
+        buffer.h)
