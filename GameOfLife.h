@@ -6,6 +6,7 @@
 #define SEMESTRALNA_PRACA_POS_GAMEOFLIFE_H
 #include <iostream>
 #include <vector>
+#include "buffer.h"
 
 
 class GameOfLife {
@@ -18,6 +19,12 @@ private:
 public:
     explicit GameOfLife() :
     rozsah(0), pocetPrvkovNaGenerovanie(0){};
+    GameOfLife(GameOfLife& game) {
+        this->rozsah = game.rozsah;
+        this->pocetPrvkovNaGenerovanie = game.pocetPrvkovNaGenerovanie;
+        this->matrix = game.matrix;
+        this->buffer = game.buffer;
+    }
     void setPocetPrvkov(int pocet) {pocetPrvkovNaGenerovanie = pocet;};
     void printGame();
     int countNeighbours(int x, int y);
@@ -27,6 +34,7 @@ public:
     void saveState(const std::string &filename);
     void loadState(const std::string &filename);
     void setCoordinatesOnMatrix(int x, int y);
+    void setBuffe(class buffer * paBuffer) { buffer = paBuffer;}
 };
 
 
