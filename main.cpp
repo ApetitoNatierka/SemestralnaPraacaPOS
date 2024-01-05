@@ -6,6 +6,8 @@
 #include <filesystem>
 #include <string>
 #include <iostream>
+#include <Windows.h>
+
 
 
 
@@ -21,8 +23,8 @@ int main() {
     while(opakovanie1) {
         switch (zaciatok) {
             case 1 : game.createMatrix(load.spocitajVelkostMatice(load.getMaxFile()));
-                    std::cout << game.getRozsah() << std::endl;
                     game.loadState(load.getMaxFile());
+                    load.deleteFiles();
                     opakovanie1 = false;
                     break;
             case 2 : std::cout<< "Napis rozsah hracej plochy: "<< std::endl;
@@ -66,13 +68,23 @@ int main() {
         }
 
     }
-    game.printGame();
-
     int cisloIteracie = 0;
     std::string menoSuboru = "iteracia";
     while(true){
-        game.update();
+        if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+            std::cout << "REVERSE" << std::endl;
+            for (int i = 0; i < load.getNajnovsiaIteracia()-1; ++i) {
+                std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia()- i) ;
+                game.loadState(cesta);
+                game.printGame();
+                if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+                    game.loadState(cesta);
+                    break;
+                }
+            }
+        }
         game.printGame();
+        game.update();
         ++cisloIteracie;
         game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
         std::this_thread::sleep_for(std::chrono::seconds(1));

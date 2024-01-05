@@ -12,12 +12,15 @@ private:
     std::string path;
     int maxIteration = 0;
     std::string maxFile;
+    int najnovsiaIteracia;
 public:
     void sortNewestSave();
     void setPath(std::string cesta);
     std::string getPath();
     std::string getMaxFile();
     int spocitajVelkostMatice(const std::string& filename);
+    int getNajnovsiaIteracia();
+    void deleteFiles();
 };
 
 

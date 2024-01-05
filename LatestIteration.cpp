@@ -10,6 +10,7 @@
 #include <utility>
 
 
+
 void LatestIteration::sortNewestSave() {
     for (const auto & entry : std::filesystem::directory_iterator(path)) {
         std::string filename = entry.path().filename().string();
@@ -17,6 +18,7 @@ void LatestIteration::sortNewestSave() {
 
         if (filename.substr(0, prefix.size()) == prefix) {
             int num = std::stoi(filename.substr(prefix.size()));
+            najnovsiaIteracia = num;
             if (num > maxIteration) {
                 maxIteration = num;
                 maxFile = path + entry.path().filename().string();
@@ -53,5 +55,18 @@ void LatestIteration::setPath(std::string cesta) {
 std::string LatestIteration::getPath() {
     return path;
 }
+
+int LatestIteration::getNajnovsiaIteracia() {
+    return najnovsiaIteracia;
+}
+
+void LatestIteration::deleteFiles() {
+    for (const auto& entry : std::filesystem::directory_iterator(path)) {
+        if (entry.is_regular_file()) {
+            std::filesystem::remove(entry.path());
+        }
+    }
+}
+
 
 

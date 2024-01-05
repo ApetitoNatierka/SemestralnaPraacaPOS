@@ -24,7 +24,7 @@ void GameOfLife::saveState(const std::string& filename) {
 void GameOfLife::loadState(const std::string& filename) {
     std::ifstream file(filename);
     for (auto& row : matrix) {
-        for (bool cell : row) {
+        for (bool& cell : row) {
             file >> cell;
         }
     }
@@ -110,5 +110,4 @@ void GameOfLife::setCoordinatesOnMatrix(int x, int y) {
 
 int GameOfLife::getRozsah() {
     return rozsah;
-};
-
+}
