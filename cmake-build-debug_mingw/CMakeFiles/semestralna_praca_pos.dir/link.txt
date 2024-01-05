@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\semestralna_praca_pos.dir/objects.a
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\ar.exe qc CMakeFiles\semestralna_praca_pos.dir/objects.a @CMakeFiles\semestralna_praca_pos.dir\objects1.rsp
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\semestralna_praca_pos.dir/objects.a -Wl,--no-whole-archive -o semestralna_praca_pos.exe -Wl,--out-implib,libsemestralna_praca_pos.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\semestralna_praca_pos.dir\linkLibs.rsp

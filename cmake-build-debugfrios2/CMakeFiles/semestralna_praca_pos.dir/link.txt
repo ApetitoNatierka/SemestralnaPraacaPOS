@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/semestralna_praca_pos.dir/main.cpp.o CMakeFiles/semestralna_praca_pos.dir/GameOfLife.cpp.o CMakeFiles/semestralna_praca_pos.dir/LatestIteration.cpp.o -o semestralna_praca_pos 

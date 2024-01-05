@@ -1,0 +1,3 @@
+C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/cmake-build-debug_mingw/CMakeFiles/semestralna_praca_pos.dir
+C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/cmake-build-debug_mingw/CMakeFiles/edit_cache.dir
+C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/cmake-build-debug_mingw/CMakeFiles/rebuild_cache.dir

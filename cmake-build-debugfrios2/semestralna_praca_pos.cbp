@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="semestralna_praca_pos"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="semestralna_praca_pos">
+				<Option output="/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/semestralna_praca_pos" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 semestralna_praca_pos"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="semestralna_praca_pos/fast">
+				<Option output="/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/semestralna_praca_pos" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/10"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/include/c++/10/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/10/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 semestralna_praca_pos/fast"/>
+					<CompileFile command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j4 -f &quot;/tmp/tmp.PCF8VqKXRi/cmake-build-debugfrios2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/tmp/tmp.PCF8VqKXRi/GameOfLife.cpp">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.PCF8VqKXRi/GameOfLife.h">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.PCF8VqKXRi/LatestIteration.cpp">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.PCF8VqKXRi/LatestIteration.h">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.PCF8VqKXRi/main.cpp">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.PCF8VqKXRi/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
