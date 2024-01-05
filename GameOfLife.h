@@ -17,7 +17,6 @@ private:
 public:
     explicit GameOfLife() :
     rozsah(0), pocetPrvkovNaGenerovanie(0){};
-    int getPocetPrvkov() const{return pocetPrvkovNaGenerovanie;};
     void setPocetPrvkov(int pocet) {pocetPrvkovNaGenerovanie = pocet;};
     void printGame();
     int countNeighbours(int x, int y);
@@ -27,7 +26,6 @@ public:
     void saveState(const std::string &filename);
     void loadState(const std::string &filename);
     void setCoordinatesOnMatrix(int x, int y);
-    int getRozsah();
 };
 
 

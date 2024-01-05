@@ -18,10 +18,10 @@ void LatestIteration::sortNewestSave() {
 
         if (filename.substr(0, prefix.size()) == prefix) {
             int num = std::stoi(filename.substr(prefix.size()));
-            najnovsiaIteracia = num;
             if (num > maxIteration) {
                 maxIteration = num;
                 maxFile = path + entry.path().filename().string();
+                najnovsiaIteracia = num;
             }
         }
     }

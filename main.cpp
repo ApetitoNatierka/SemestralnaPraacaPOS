@@ -3,9 +3,7 @@
 #include "LatestIteration.h"
 #include <chrono>
 #include <thread>
-#include <filesystem>
 #include <string>
-#include <iostream>
 #include <Windows.h>
 
 
@@ -24,10 +22,10 @@ int main() {
         switch (zaciatok) {
             case 1 : game.createMatrix(load.spocitajVelkostMatice(load.getMaxFile()));
                     game.loadState(load.getMaxFile());
-                    load.deleteFiles();
                     opakovanie1 = false;
                     break;
-            case 2 : std::cout<< "Napis rozsah hracej plochy: "<< std::endl;
+            case 2 : load.deleteFiles();
+                    std::cout<< "Napis rozsah hracej plochy: "<< std::endl;
                     int rozsahHry;
                     std::cin >> rozsahHry;
                     game.createMatrix(rozsahHry);
@@ -68,17 +66,22 @@ int main() {
         }
 
     }
-    int cisloIteracie = 0;
+    int cisloIteracie;
+    if (load.getNajnovsiaIteracia() > 0) {
+        cisloIteracie = load.getNajnovsiaIteracia();
+    } else cisloIteracie = 0;
     std::string menoSuboru = "iteracia";
-    while(true){
+    while(!(GetAsyncKeyState(VK_ESCAPE) & 0x8000)){
         if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
             std::cout << "REVERSE" << std::endl;
+            load.sortNewestSave();
             for (int i = 0; i < load.getNajnovsiaIteracia()-1; ++i) {
-                std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia()- i) ;
-                game.loadState(cesta);
+                std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia() - i) ;
+                game.loadState(load.getPath() + cesta);
                 game.printGame();
+                std::this_thread::sleep_for(std::chrono::seconds(1));
                 if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-                    game.loadState(cesta);
+                    game.loadState(load.getPath() + cesta);
                     break;
                 }
             }
@@ -90,5 +93,7 @@ int main() {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
+    std::cout << "Finalna Game of Life: " << std::endl;
+    game.printGame();
     return 0;
 }

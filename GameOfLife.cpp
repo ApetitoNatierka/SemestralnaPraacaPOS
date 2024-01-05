@@ -116,7 +116,3 @@ void GameOfLife::setCoordinatesOnMatrix(int x, int y) {
     matrix.at(x).at(y) = true;
 
 }
-
-int GameOfLife::getRozsah() {
-    return rozsah;
-}
