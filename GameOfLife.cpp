@@ -22,13 +22,23 @@ void GameOfLife::saveState(const std::string& filename) {
 }
 
 void GameOfLife::loadState(const std::string& filename) {
-    std::ifstream file(filename);
+   /* std::ifstream file(filename);
     for (auto& row : matrix) {
         for (bool& cell : row) {
             file >> cell;
         }
+    }*/
+    std::ifstream file(filename);
+    for (int i = 0; i < rozsah; ++i) {
+        for (int j = 0; j < rozsah; ++j) {
+            char value;
+            file >> value;
+            matrix.at(i).at(j) = value != '0';
+        }
     }
+
 }
+
 
 
 void GameOfLife::printGame() {
@@ -91,7 +101,6 @@ void GameOfLife::update() {
                  if (susedia == 3) {
                      docasnyMatrix.at(i).at(j) = true;
                  }
-
              }
          }
      }
