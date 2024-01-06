@@ -12,15 +12,36 @@
 
 std::mutex gameMutex;
 std::atomic<bool> gameRunning(true);
+bool pauseGame = false;
+bool reverseMode = false;
+
 
 void gameThread(GameOfLife &game, LatestIteration& load, int& cisloIteracie, const std::string& menoSuboru) {
     while (gameRunning) {
         std::unique_lock<std::mutex> lock(gameMutex);
-        game.printGame();
-        game.update();
-        ++cisloIteracie;
-        game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
-        lock.unlock(); //
+
+        if (!pauseGame) {
+            if (reverseMode) {
+                load.sortNewestSave();
+                for (int i = 0; i < load.getNajnovsiaIteracia() - 1; ++i) {
+                    std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia() - i);
+                    game.loadState(load.getPath() + cesta);
+                    game.printGame();
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
+                    if (reverseMode) {
+                        game.loadState(load.getPath() + cesta);
+                        break;
+                    }
+                }
+            } else {
+                game.printGame();
+                game.update();
+                ++cisloIteracie;
+                game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
+            }
+        }
+
+        lock.unlock();
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
@@ -31,25 +52,22 @@ void inputThread(GameOfLife& game, LatestIteration& load) {
             gameRunning = false;
         }
 
-        if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-            std::cout << "REVERSE" << std::endl;
-            load.sortNewestSave();
-            for (int i = 0; i < load.getNajnovsiaIteracia() - 1; ++i) {
-                std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia() - i);
-                {
-                    std::unique_lock<std::mutex> lock(gameMutex);
-                    game.loadState(load.getPath() + cesta);
-                    game.printGame();
-                }
-                std::this_thread::sleep_for(std::chrono::seconds(1));
-                if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-                    {
-                        std::unique_lock<std::mutex> lock(gameMutex);
-                        game.loadState(load.getPath() + cesta);
-                    }
-                    break;
-                }
+        if (GetAsyncKeyState(VK_SPACE) & 0x8001) {
+            pauseGame = !pauseGame;
+            if (!pauseGame) {
+                reverseMode = false;
             }
+            std::cout << (pauseGame ? "Game Paused" : "Game Resumed") << std::endl;
+        }
+
+        if (GetAsyncKeyState(VK_LEFT) & 0x8001) {
+            reverseMode = true;
+            std::cout << "Reverse Mode Activated" << std::endl;
+        }
+
+        if (GetAsyncKeyState(VK_RIGHT) & 0x8001) {
+            reverseMode = false;
+            std::cout << "Update Mode Activated" << std::endl;
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
