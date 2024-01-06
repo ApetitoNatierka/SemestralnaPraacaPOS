@@ -36,7 +36,7 @@ void gameThread(GameOfLife &game, LatestIteration& load, int& cisloIteracie, con
                             break;
                         }
                         if (GetAsyncKeyState(VK_RIGHT) & 0x8001) {
-                            std::cout << "Pokračujete v doprednom chode simulácie." << std::endl;
+                            std::cout << "Pokracujete v doprednom chode simulacie." << std::endl;
                             break;
                         }
                         if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
