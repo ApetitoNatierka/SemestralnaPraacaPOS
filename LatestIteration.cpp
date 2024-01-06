@@ -12,6 +12,8 @@
 
 
 void LatestIteration::sortNewestSave() {
+    maxIteration = 0;
+
     for (const auto & entry : std::filesystem::directory_iterator(path)) {
         std::string filename = entry.path().filename().string();
         std::string prefix = "iteracia";

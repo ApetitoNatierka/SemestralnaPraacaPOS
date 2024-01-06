@@ -7,7 +7,6 @@
 #include <Windows.h>
 #include <filesystem>
 #include <mutex>
-#include <condition_variable>
 #include <atomic>
 
 std::mutex gameMutex;
@@ -23,21 +22,37 @@ void gameThread(GameOfLife &game, LatestIteration& load, int& cisloIteracie, con
         if (!pauseGame) {
             if (reverseMode) {
                 load.sortNewestSave();
-                for (int i = 0; i < load.getNajnovsiaIteracia() - 1; ++i) {
-                    std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia() - i);
-                    game.loadState(load.getPath() + cesta);
-                    game.printGame();
-                    std::this_thread::sleep_for(std::chrono::seconds(1));
-                    if (reverseMode) {
-                        game.loadState(load.getPath() + cesta);
-                        break;
+                std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia());
+                game.loadState(load.getPath() + cesta);
+                game.printGame();
+                std::filesystem::remove(load.getPath() + cesta);
+                cisloIteracie--;
+
+                if (cesta == "iteracia1") {
+                    std::cout << "Prisli ste na zaciatok simulacie. Stlacte sipku vpravo pre pokracovanie a Esc pre ukoncenie." << std::endl;
+
+                    while (true) {
+                        if (GetAsyncKeyState(VK_SPACE) & 0x8001) {
+                            break;
+                        }
+                        if (GetAsyncKeyState(VK_RIGHT) & 0x8001) {
+                            std::cout << "Pokračujete v doprednom chode simulácie." << std::endl;
+                            break;
+                        }
+                        if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
+                            gameRunning = false;
+                            break;
+                        }
+
+                        std::this_thread::sleep_for(std::chrono::milliseconds(100));
                     }
                 }
+
             } else {
-                game.printGame();
-                game.update();
                 ++cisloIteracie;
+                game.update();
                 game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
+                game.printGame();
             }
         }
 
@@ -139,6 +154,12 @@ int main() {
         cisloIteracie = load.getNajnovsiaIteracia();
     } else cisloIteracie = 0;
     std::string menoSuboru = "iteracia";
+
+    if (cisloIteracie == 0){
+        ++cisloIteracie;
+        game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
+    }
+    game.printGame();
 
     std::thread gameUpateThread(gameThread, std::ref(game), std::ref(load), std::ref(cisloIteracie), std::cref(menoSuboru));
     std::thread inputReadThread(inputThread, std::ref(game), std::ref(load));

@@ -11,7 +11,7 @@ void GameOfLife::saveState(const std::string& filename) {
     std::ofstream file(filename);
     for (const auto& row : matrix) {
         for (bool cell : row) {
-            file << cell << ' ';
+            file << (cell ? '1' : '0');
         }
         file << '\n';
     }
@@ -19,14 +19,17 @@ void GameOfLife::saveState(const std::string& filename) {
 
 void GameOfLife::loadState(const std::string& filename) {
     std::ifstream file(filename);
-    for (int i = 0; i < rozsah; ++i) {
-        for (int j = 0; j < rozsah; ++j) {
-            char value;
-            file >> value;
-            matrix.at(i).at(j) = value != '0';
+    std::string line;
+    int i = 0;
+    int j = 0;
+    while (std::getline(file, line)) {
+for (char value : line) {
+            matrix.at(i).at(j) = (value == '1');
+            ++j;
         }
+        ++i;
+        j = 0;
     }
-
 }
 
 
