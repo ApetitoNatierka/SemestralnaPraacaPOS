@@ -94,6 +94,12 @@
 		<Unit filename="C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/LatestIteration.h">
 			<Option target="semestralna_praca_pos"/>
 		</Unit>
+		<Unit filename="C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/buffer.cpp">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
+		<Unit filename="C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/buffer.h">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
 		<Unit filename="C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/main.cpp">
 			<Option target="semestralna_praca_pos"/>
 		</Unit>

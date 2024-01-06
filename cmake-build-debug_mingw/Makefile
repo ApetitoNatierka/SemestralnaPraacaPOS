@@ -176,6 +176,30 @@ LatestIteration.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/LatestIteration.cpp.s
 .PHONY : LatestIteration.cpp.s
 
+buffer.obj: buffer.cpp.obj
+.PHONY : buffer.obj
+
+# target to build an object file
+buffer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/buffer.cpp.obj
+.PHONY : buffer.cpp.obj
+
+buffer.i: buffer.cpp.i
+.PHONY : buffer.i
+
+# target to preprocess a source file
+buffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/buffer.cpp.i
+.PHONY : buffer.cpp.i
+
+buffer.s: buffer.cpp.s
+.PHONY : buffer.s
+
+# target to generate assembly for a file
+buffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/buffer.cpp.s
+.PHONY : buffer.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -215,6 +239,9 @@ help:
 	@echo ... LatestIteration.obj
 	@echo ... LatestIteration.i
 	@echo ... LatestIteration.s
+	@echo ... buffer.obj
+	@echo ... buffer.i
+	@echo ... buffer.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

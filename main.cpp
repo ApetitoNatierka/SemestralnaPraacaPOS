@@ -8,15 +8,52 @@
 #include <filesystem>
 #include <mutex>
 #include <condition_variable>
+#include <atomic>
 
+std::mutex gameMutex;
+std::atomic<bool> gameRunning(true);
 
-
-void konzumujF(GameOfLife& game, const std::string& filename){
-    game.saveState(filename);
+void gameThread(GameOfLife &game, LatestIteration& load, int& cisloIteracie, const std::string& menoSuboru) {
+    while (gameRunning) {
+        std::unique_lock<std::mutex> lock(gameMutex);
+        game.printGame();
+        game.update();
+        ++cisloIteracie;
+        game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
+        lock.unlock(); //
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
 }
 
-void produkujF(GameOfLife& game){
-    game.update();
+void inputThread(GameOfLife& game, LatestIteration& load) {
+    while (gameRunning) {
+        if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
+            gameRunning = false;
+        }
+
+        if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+            std::cout << "REVERSE" << std::endl;
+            load.sortNewestSave();
+            for (int i = 0; i < load.getNajnovsiaIteracia() - 1; ++i) {
+                std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia() - i);
+                {
+                    std::unique_lock<std::mutex> lock(gameMutex);
+                    game.loadState(load.getPath() + cesta);
+                    game.printGame();
+                }
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+                if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+                    {
+                        std::unique_lock<std::mutex> lock(gameMutex);
+                        game.loadState(load.getPath() + cesta);
+                    }
+                    break;
+                }
+            }
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
 }
 
 
@@ -24,8 +61,6 @@ int main() {
 
     GameOfLife game;
     LatestIteration load;
-    std::thread konzumuj(konzumujF, std::ref(game), load.getPath());
-    std::thread produkuj(produkujF, std::ref(game));
     load.setPath("C:/saves/");
     load.sortNewestSave();
     std::cout<<"Chces nacitat hru(1) alebo vytvorit novu(2)?"<<std::endl;
@@ -80,32 +115,18 @@ int main() {
         }
 
     }
+
     int cisloIteracie;
     if (!std::filesystem::is_empty(load.getPath()) > 0) {
         cisloIteracie = load.getNajnovsiaIteracia();
     } else cisloIteracie = 0;
     std::string menoSuboru = "iteracia";
-    while(!(GetAsyncKeyState(VK_ESCAPE) & 0x8000)){
-        if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-            std::cout << "REVERSE" << std::endl;
-            load.sortNewestSave();
-            for (int i = 0; i < load.getNajnovsiaIteracia()-1; ++i) {
-                std::string cesta = "iteracia" + std::to_string(load.getNajnovsiaIteracia() - i) ;
-                game.loadState(load.getPath() + cesta);
-                game.printGame();
-                std::this_thread::sleep_for(std::chrono::seconds(1));
-                if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-                    game.loadState(load.getPath() + cesta);
-                    break;
-                }
-            }
-        }
-        game.printGame();
-        game.update();
-        ++cisloIteracie;
-        game.saveState(load.getPath() + menoSuboru += std::to_string(cisloIteracie));
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-    }
+
+    std::thread gameUpateThread(gameThread, std::ref(game), std::ref(load), std::ref(cisloIteracie), std::cref(menoSuboru));
+    std::thread inputReadThread(inputThread, std::ref(game), std::ref(load));
+
+    gameUpateThread.join();
+    inputReadThread.join();
 
     std::cout << "Finalna Game of Life: " << std::endl;
     game.printGame();
