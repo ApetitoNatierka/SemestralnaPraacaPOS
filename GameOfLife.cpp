@@ -5,6 +5,7 @@
 #include "GameOfLife.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 
 void GameOfLife::saveState(const std::string& filename) {
@@ -109,3 +110,36 @@ void GameOfLife::setCoordinatesOnMatrix(int x, int y) {
     matrix.at(x).at(y) = true;
 
 }
+
+std::string GameOfLife::serializeGameState() {
+    std::ostringstream oss;
+
+    for (const auto& row : this->matrix) {
+        for (bool value : row) {
+            oss << (value ? "1" : "0") << ",";
+        }
+        oss << "\n";
+    }
+
+    return oss.str();
+}
+
+void GameOfLife::deserializeGameState(const std::string& serializedData) {
+    std::istringstream iss(serializedData);
+    std::string line;
+
+    while (std::getline(iss, line)) {
+        std::vector<bool> row;
+        std::istringstream rowStream(line);
+
+        char value;
+        while (rowStream >> value) {
+            row.push_back(value == '1');
+            rowStream.ignore();
+        }
+
+        matrix.push_back(row);
+    }
+
+}
+

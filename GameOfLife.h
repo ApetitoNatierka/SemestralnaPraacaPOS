@@ -34,7 +34,8 @@ public:
     void saveState(const std::string &filename);
     void loadState(const std::string &filename);
     void setCoordinatesOnMatrix(int x, int y);
-    void setBuffe(class buffer * paBuffer) { buffer = paBuffer;}
+    std::string serializeGameState();
+    void deserializeGameState(const std::string& serializedData);
 };
 
 

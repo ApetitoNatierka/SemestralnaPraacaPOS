@@ -9,4 +9,5 @@ add_executable(semestralna_praca_pos main.cpp
         LatestIteration.cpp
         LatestIteration.h
         buffer.cpp
-        buffer.h)
+        buffer.h
+        my_socket.h)
