@@ -181,6 +181,7 @@ int main() {
     game.printGame();
 
     int ulozit;
+    std::string received_data;
     std::cout << "Zelate si vzor ulozit na server ? ANO(1)/NIE(2) " << std::endl;
     std::cin>> ulozit;
 
@@ -194,6 +195,9 @@ int main() {
             if(socket != nullptr) {
                 socket->sendData(messageToServer);
             }
+
+            received_data = socket->receiveData();
+            std::cout << received_data <<std::endl;
 
             std::this_thread::sleep_for(std::chrono::seconds(3));
 

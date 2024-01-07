@@ -10,7 +10,7 @@ public:
     ~MySocket();
     void sendData(const std::string& data);
     void sendEndMessage();
-    SOCKET getSocket() {return connectSocket;}
+    std::string receiveData();
 protected:
     MySocket(SOCKET socket);
 private:

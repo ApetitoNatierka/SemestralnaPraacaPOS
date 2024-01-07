@@ -2,6 +2,9 @@
 #include <stdexcept>
 #include <ws2tcpip.h>
 #include <winsock2.h>
+#include <unistd.h>
+#include <cerrno>
+
 
 #define SOCKET_TERMINATE_CHAR '\0'
 
@@ -82,6 +85,57 @@ void MySocket::sendData(const std::string &data) {
     buffer = NULL;
 }
 
+std::string MySocket::receiveData() {
+    char buffer[4096];
+    std::string received_data;
+
+    while (true) {
+        // Kontrola platnosti file descriptoru
+        if (connectSocket == INVALID_SOCKET || connectSocket < 0) {
+            throw std::runtime_error("Socket descriptor is invalid\n");
+        }
+
+        // Kontrola, či je file descriptor pripravený na čítanie
+        fd_set read_fds;
+        FD_ZERO(&read_fds);
+        FD_SET(connectSocket, &read_fds);
+
+        struct timeval timeout;
+        timeout.tv_sec = 0;
+        timeout.tv_usec = 100000; // 100 ms
+
+        int select_result = select(connectSocket + 1, &read_fds, NULL, NULL, &timeout);
+
+        if (select_result == -1) {
+            int error_number = errno;
+            throw std::runtime_error("select failed with error: " + std::to_string(error_number) + "\n");
+        } else if (select_result == 0) {
+            // Timeout - file descriptor nie je pripravený na čítanie
+            continue;
+        }
+
+        ssize_t bytes_received = read(connectSocket, buffer, sizeof(buffer));
+
+        if (bytes_received > 0) {
+            received_data.append(buffer, bytes_received);
+
+            size_t null_pos = received_data.find('\0');
+            if (null_pos != std::string::npos) {
+                received_data.erase(null_pos);  // Odstráni '\0' z reťazca
+                break;
+            }
+        } else if (bytes_received == 0) {
+            // Server odpojil pripojenie
+            break;
+        } else {
+            // Nastala chyba pri prijímaní dát
+            int error_number = errno;
+            throw std::runtime_error("read failed with error: " + std::to_string(error_number) + "\n");
+        }
+    }
+
+    return received_data;
+}
 void MySocket::sendEndMessage() {
     this->sendData(this->endMessage);
 }
