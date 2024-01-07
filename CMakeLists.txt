@@ -10,4 +10,7 @@ add_executable(semestralna_praca_pos main.cpp
         LatestIteration.h
         buffer.cpp
         buffer.h
-        my_socket.h)
+        my_socket.h
+        my_socket.cpp)
+
+target_link_libraries(semestralna_praca_pos ws2_32)

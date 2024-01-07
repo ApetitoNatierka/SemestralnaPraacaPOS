@@ -103,6 +103,9 @@
 		<Unit filename="C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/main.cpp">
 			<Option target="semestralna_praca_pos"/>
 		</Unit>
+		<Unit filename="C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/my_socket.cpp">
+			<Option target="semestralna_praca_pos"/>
+		</Unit>
 		<Unit filename="C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/my_socket.h">
 			<Option target="semestralna_praca_pos"/>
 		</Unit>

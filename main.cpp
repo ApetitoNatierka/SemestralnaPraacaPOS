@@ -4,11 +4,12 @@
 #include <chrono>
 #include <thread>
 #include <string>
-#include <Windows.h>
 #include <filesystem>
 #include <mutex>
 #include <atomic>
 #include "my_socket.h"
+#include <Windows.h>
+
 
 std::mutex gameMutex;
 std::atomic<bool> gameRunning(true);
@@ -149,26 +150,11 @@ int main() {
                     }
                     break;
             case 3 :
-                socket = MySocket::createConnection("frios2.fri.uniza.sk", 12345);
-
-                messageToServer = "Ahoj, som klient!";
-                socket->sendData(messageToServer);
-
-                char buffer[1024];
-                memset(buffer, 0, sizeof(buffer));
-                bytesRead = recv(socket->getSocket(), buffer, sizeof(buffer) - 1, 0);
-
-                if (bytesRead > 0) {
-                    std::cout << "Odpoved od servera: " << buffer << std::endl;
-                }
-
-                socket->sendEndMessage();
-                delete socket;
-
-                opakovanie1 = false;
+                std::cout << "Implementing" << std::endl;
+                opakovanie1 = true;
                 break;
             default:
-                std::cout << "Musis vybrat 1, 2 alebo 3" << std::endl;
+                std::cout << "Musite vybrat 1, 2 alebo 3" << std::endl;
         }
 
     }
@@ -193,5 +179,35 @@ int main() {
 
     std::cout << "Finalna Game of Life: " << std::endl;
     game.printGame();
+
+    int ulozit;
+    std::cout << "Zelate si vzor ulozit na server ? ANO(1)/NIE(2) " << std::endl;
+    std::cin>> ulozit;
+
+    switch (ulozit) {
+
+        case 1 :
+            socket = MySocket::createConnection("frios2.fri.uniza.sk", 13579);
+
+            messageToServer += game.serializeGameState() + ";";
+
+            if(socket != nullptr) {
+                socket->sendData(messageToServer);
+            }
+
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+
+            std::cout << "Hra bola ulozena na server. Dovidenia" << std::endl;
+            break;
+
+        case 2:
+            std::cout << "Dovidenia" << std::endl;
+            break;
+
+        default:
+            std::cout << "Musis vybrat 1 alebo 2" << std::endl;
+            break;
+    }
+
     return 0;
 }

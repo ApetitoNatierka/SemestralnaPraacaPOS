@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/LatestIteration.cpp" "CMakeFiles/semestralna_praca_pos.dir/LatestIteration.cpp.obj" "gcc" "CMakeFiles/semestralna_praca_pos.dir/LatestIteration.cpp.obj.d"
   "C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/buffer.cpp" "CMakeFiles/semestralna_praca_pos.dir/buffer.cpp.obj" "gcc" "CMakeFiles/semestralna_praca_pos.dir/buffer.cpp.obj.d"
   "C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/main.cpp" "CMakeFiles/semestralna_praca_pos.dir/main.cpp.obj" "gcc" "CMakeFiles/semestralna_praca_pos.dir/main.cpp.obj.d"
+  "C:/Users/keres/CLionProjects/SemestralnaPraacaPOS/my_socket.cpp" "CMakeFiles/semestralna_praca_pos.dir/my_socket.cpp.obj" "gcc" "CMakeFiles/semestralna_praca_pos.dir/my_socket.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

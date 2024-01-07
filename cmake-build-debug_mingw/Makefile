@@ -224,6 +224,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+my_socket.obj: my_socket.cpp.obj
+.PHONY : my_socket.obj
+
+# target to build an object file
+my_socket.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/my_socket.cpp.obj
+.PHONY : my_socket.cpp.obj
+
+my_socket.i: my_socket.cpp.i
+.PHONY : my_socket.i
+
+# target to preprocess a source file
+my_socket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/my_socket.cpp.i
+.PHONY : my_socket.cpp.i
+
+my_socket.s: my_socket.cpp.s
+.PHONY : my_socket.s
+
+# target to generate assembly for a file
+my_socket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\semestralna_praca_pos.dir\build.make CMakeFiles/semestralna_praca_pos.dir/my_socket.cpp.s
+.PHONY : my_socket.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -245,6 +269,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... my_socket.obj
+	@echo ... my_socket.i
+	@echo ... my_socket.s
 .PHONY : help
 
 
