@@ -36,6 +36,7 @@ public:
     void setCoordinatesOnMatrix(int x, int y);
     std::string serializeGameState();
     std::vector<std::string> deserializeGameState(const std::string& input);
+    int countLines(const std::string& input);
 };
 
 

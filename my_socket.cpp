@@ -86,13 +86,12 @@ void MySocket::sendData(const std::string &data) {
 }
 
 std::string MySocket::receiveData() {
-    char recvbuf[512];
-    int recvbuflen = 512;
+    char recvbuf[1000];
+    int recvbuflen = 1000;
     recv(connectSocket, recvbuf, recvbuflen, 0);
 
     std::string received_data(recvbuf);
 
-    // Odstráňte nuly z konca reťazca
     size_t null_pos = received_data.find('\0');
     if (null_pos != std::string::npos) {
         received_data.erase(null_pos);

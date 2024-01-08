@@ -105,12 +105,16 @@ int main() {
     int choice;
     int rozsahHry;
     int bytesRead;
+    int cisloVzoru;
     std::string messageToServer;
+    std::string answer;
     std::string received_data;
     std::vector<std::string> result;
     MySocket* socket = nullptr;
     std::cin>> zaciatok;
     opakovanie1 = true;
+    int pocetVzorov = 0;
+    bool opakovanie3 = true;
     while(opakovanie1) {
         switch (zaciatok) {
             case 1 : game.createMatrix(load.spocitajVelkostMatice(load.getMaxFile()));
@@ -152,19 +156,40 @@ int main() {
                     }
                     break;
             case 3 :
-                socket = MySocket::createConnection("frios2.fri.uniza.sk", 13579);
+                socket = MySocket::createConnection("frios2.fri.uniza.sk", 13569);
 
-                messageToServer +=  "send;";
+                messageToServer +=  ";";
 
                 if(socket != nullptr) {
                     socket->sendData(messageToServer);
                 }
                 socket->sendEndMessage();
-                received_data = socket->receiveData();
-                std::cout << received_data <<std::endl;
 
-                result = game.deserializeGameState(socket->receiveData());
-                opakovanie1 = true;
+                answer = socket->receiveData();
+                result = game.deserializeGameState(answer);
+                for(int i = 0; i < result.size(); ++i) {
+                    if (result.at(i) != "") {
+                        std::cout <<"Pre tento vzor stlacte :"<< i << std::endl;
+                        std::cout << result.at(i) << std::endl;
+                        pocetVzorov++;
+                    }
+                }
+
+                delete socket;
+                socket = nullptr;
+
+                while(opakovanie3) {
+                    std::cin >> cisloVzoru;
+                    if(cisloVzoru < pocetVzorov) {
+                        game.createMatrix(game.countLines(result.at(cisloVzoru)));
+                        game.loadState(result.at(cisloVzoru));
+                        opakovanie3 = false;
+                    } else {
+                        std::cout << "Neplatne cislo zadajte platne cislo vzoru!!!" << std::endl;
+                    }
+                }
+
+                opakovanie1 = false;
                 break;
             default:
                 std::cout << "Musite vybrat 1, 2 alebo 3" << std::endl;
@@ -200,7 +225,7 @@ int main() {
     switch (ulozit) {
 
         case 1 :
-            socket = MySocket::createConnection("frios2.fri.uniza.sk", 13579);
+            socket = MySocket::createConnection("frios2.fri.uniza.sk", 13569);
 
             messageToServer += game.serializeGameState() + ";";
 
@@ -210,6 +235,8 @@ int main() {
             socket->sendEndMessage();
             received_data = socket->receiveData();
             std::cout << received_data <<std::endl;
+            delete socket;
+            socket = nullptr;
 
             std::cout << "Hra bola ulozena na server. Dovidenia" << std::endl;
             break;

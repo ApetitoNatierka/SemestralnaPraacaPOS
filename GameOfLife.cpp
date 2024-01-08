@@ -138,9 +138,23 @@ std::vector<std::string> GameOfLife::deserializeGameState(const std::string& inp
         line.erase(0, line.find_first_not_of(" \t\n\r\f\v"));
         line.erase(line.find_last_not_of(" \t\n\r\f\v") + 1);
 
+        size_t pos = line.find(":end");
+        if (pos != std::string::npos) {
+            line.erase(pos, std::string(":end").length());
+        }
+
         result.push_back(line);
     }
 
     return result;
 }
 
+int GameOfLife::countLines(const std::string& input) {
+    int lineCount = 0;
+    for (char c : input) {
+        if (c == '\n') {
+            lineCount++;
+        }
+    }
+    return lineCount;
+}
