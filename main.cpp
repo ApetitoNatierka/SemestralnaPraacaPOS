@@ -182,7 +182,7 @@ int main() {
                     std::cin >> cisloVzoru;
                     if(cisloVzoru < pocetVzorov) {
                         game.createMatrix(game.countLines(result.at(cisloVzoru)));
-                        game.loadState(result.at(cisloVzoru));
+                        game.loadStateFromString(result.at(cisloVzoru));
                         opakovanie3 = false;
                     } else {
                         std::cout << "Neplatne cislo zadajte platne cislo vzoru!!!" << std::endl;

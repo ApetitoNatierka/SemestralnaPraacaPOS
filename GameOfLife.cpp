@@ -26,7 +26,7 @@ void GameOfLife::loadState(const std::string& filename) {
     int i = 0;
     int j = 0;
     while (std::getline(file, line)) {
-for (char value : line) {
+        for (char value : line) {
             matrix.at(i).at(j) = (value == '1');
             ++j;
         }
@@ -157,4 +157,21 @@ int GameOfLife::countLines(const std::string& input) {
         }
     }
     return lineCount;
+}
+
+void GameOfLife::loadStateFromString(const std::string& input) {
+    std::istringstream ss(input);
+    std::string line;
+    int i = 0;
+    int j = 0;
+    while (std::getline(ss, line)) {
+        for (char value : line) {
+            if (value == '0' || value == '1') {
+                matrix.at(i).at(j) = (value == '1');
+                ++j;
+            }
+        }
+        ++i;
+        j = 0;
+    }
 }
