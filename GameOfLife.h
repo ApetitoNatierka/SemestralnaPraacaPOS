@@ -35,7 +35,7 @@ public:
     void loadState(const std::string &filename);
     void setCoordinatesOnMatrix(int x, int y);
     std::string serializeGameState();
-    void deserializeGameState(const std::string& serializedData);
+    std::vector<std::string> deserializeGameState(const std::string& input);
 };
 
 

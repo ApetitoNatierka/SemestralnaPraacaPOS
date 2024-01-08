@@ -6,6 +6,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
+#include <algorithm>
 
 
 void GameOfLife::saveState(const std::string& filename) {
@@ -124,22 +126,21 @@ std::string GameOfLife::serializeGameState() {
     return oss.str();
 }
 
-void GameOfLife::deserializeGameState(const std::string& serializedData) {
-    std::istringstream iss(serializedData);
+std::vector<std::string> GameOfLife::deserializeGameState(const std::string& input) {
+    std::vector<std::string> result;
+
+    std::string cleanedInput = input;
+    cleanedInput.erase(std::remove(cleanedInput.begin(), cleanedInput.end(), ','), cleanedInput.end());
+
+    std::istringstream ss(cleanedInput);
     std::string line;
+    while (std::getline(ss, line, ';')) {
+        line.erase(0, line.find_first_not_of(" \t\n\r\f\v"));
+        line.erase(line.find_last_not_of(" \t\n\r\f\v") + 1);
 
-    while (std::getline(iss, line)) {
-        std::vector<bool> row;
-        std::istringstream rowStream(line);
-
-        char value;
-        while (rowStream >> value) {
-            row.push_back(value == '1');
-            rowStream.ignore();
-        }
-
-        matrix.push_back(row);
+        result.push_back(line);
     }
 
+    return result;
 }
 

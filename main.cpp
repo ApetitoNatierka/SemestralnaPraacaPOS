@@ -106,6 +106,8 @@ int main() {
     int rozsahHry;
     int bytesRead;
     std::string messageToServer;
+    std::string received_data;
+    std::vector<std::string> result;
     MySocket* socket = nullptr;
     std::cin>> zaciatok;
     opakovanie1 = true;
@@ -150,7 +152,18 @@ int main() {
                     }
                     break;
             case 3 :
-                std::cout << "Implementing" << std::endl;
+                socket = MySocket::createConnection("frios2.fri.uniza.sk", 13579);
+
+                messageToServer +=  "send;";
+
+                if(socket != nullptr) {
+                    socket->sendData(messageToServer);
+                }
+                socket->sendEndMessage();
+                received_data = socket->receiveData();
+                std::cout << received_data <<std::endl;
+
+                result = game.deserializeGameState(socket->receiveData());
                 opakovanie1 = true;
                 break;
             default:
@@ -181,7 +194,6 @@ int main() {
     game.printGame();
 
     int ulozit;
-    std::string received_data;
     std::cout << "Zelate si vzor ulozit na server ? ANO(1)/NIE(2) " << std::endl;
     std::cin>> ulozit;
 
@@ -195,11 +207,9 @@ int main() {
             if(socket != nullptr) {
                 socket->sendData(messageToServer);
             }
-
+            socket->sendEndMessage();
             received_data = socket->receiveData();
             std::cout << received_data <<std::endl;
-
-            std::this_thread::sleep_for(std::chrono::seconds(3));
 
             std::cout << "Hra bola ulozena na server. Dovidenia" << std::endl;
             break;
